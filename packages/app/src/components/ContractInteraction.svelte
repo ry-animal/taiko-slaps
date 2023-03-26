@@ -1,18 +1,22 @@
 <script lang="ts">
   // imports
   import { readContract, prepareWriteContract, writeContract } from "@wagmi/core";
-  import { fooABI, fooAddress } from "../generated";
+  //import { fooABI, fooAddress } from "../generated";
+  import { barABI, barAddress } from "../generated";
   import { foundry } from "@wagmi/core/chains";
+  import { providers } from "../stores";
 
   // variables
   let inputMessage = "";
   let messageFromContract = "";
 
+  console.log($providers[foundry.id].getBalance("0x000000"));
+
   // functions
   async function readMessage() {
     const data = await readContract({
-      address: fooAddress[foundry.id],
-      abi: fooABI,
+      address: barAddress[foundry.id],
+      abi: barABI,
       functionName: "myString",
     });
     messageFromContract = data;
@@ -20,8 +24,8 @@
 
   async function writeMessage() {
     const config = await prepareWriteContract({
-      address: fooAddress[foundry.id],
-      abi: fooABI,
+      address: barAddress[foundry.id],
+      abi: barABI,
       functionName: "setMyString",
       args: [inputMessage],
     });

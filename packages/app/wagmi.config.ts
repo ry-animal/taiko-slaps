@@ -35,6 +35,11 @@ export default defineConfig({
           // OR
           // [chains.foundry.id]: "0xblahblahblah"
         },
+        Bar: {
+          [chains.foundry.id]: foundryJson.transactions[0].contractAddress as `0x${string}`,
+          // OR
+          // [chains.foundry.id]: "0xblahblahblah"
+        },
       },
       project: "../../",
     }),
